@@ -7,6 +7,11 @@ import (
     "net/http"
 )
 
+type FieldErrorResponse struct {
+    Field string
+    Tag string
+}
+
 func Recover() gin.HandlerFunc {
     return func(context *gin.Context) {
         defer func ()  {
@@ -16,24 +21,38 @@ func Recover() gin.HandlerFunc {
                     fmt.Printf("err: %v\n", err)
                     fmt.Printf("err: %#v\n", err)
 
+                    var serializers []FieldErrorResponse
+
+                    for _, fieldError := range err {
+                        serializer := FieldErrorResponse {
+                            Field: fieldError.Field(),
+                            Tag: fieldError.Tag(),
+                        }
+                        serializers = append(serializers, serializer)
+                    }
+
                     context.JSON(
                         http.StatusBadRequest,
                         gin.H {
-                            "error": fmt.Sprintf("VALIDATION_ERRORS: %s", err.Error()),
+                            "message": fmt.Sprintf("VALIDATION_ERROR: %s", err.Error()),
+                            "code": "VALIDATION_ERROR",
+                            "errors": serializers,
                         },
                     )
                 } else if err, ok := recovered.(error); ok {
                     context.JSON(
                         http.StatusInternalServerError,
                         gin.H {
-                            "error": fmt.Sprintf("UNKNOW_ERRORS: %s", err.Error()),
+                            "message": fmt.Sprintf("UNKNOW_ERROR: %s", err.Error()),
+                            "code": "INTERNAL_SERVER_ERROR",
                         },
                     )
                 } else {
                     context.JSON(
                         http.StatusInternalServerError,
                         gin.H {
-                            "error": fmt.Sprintf("UNKNOW_PANIC: %#v - %v", recovered, recovered),
+                            "message": fmt.Sprintf("UNKNOW_PANIC: %#v - %v", recovered, recovered),
+                            "code": "INTERNAL_SERVER_ERROR",
                         },
                     )
                 }

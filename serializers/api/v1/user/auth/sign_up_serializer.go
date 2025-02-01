@@ -9,7 +9,7 @@ type SignUpResponse struct {
     Email string `json:"email"`
 }
 
-func Serializer(user models.User) SignUpResponse {
+func SignUpSerializer(user models.User) SignUpResponse {
     return SignUpResponse {
         ID: user.ID,
         Email: user.Email,

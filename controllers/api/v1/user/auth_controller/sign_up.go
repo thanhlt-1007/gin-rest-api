@@ -22,7 +22,7 @@ func SignUp() gin.HandlerFunc {
 
         response.ResponseOK(
             context,
-            serializer.Serializer(user),
+            serializer.SignUpSerializer(user),
         )
     }
 }
