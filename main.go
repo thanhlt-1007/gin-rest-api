@@ -7,8 +7,7 @@ import (
 )
 
 func init() {
-    initializers.InitEnv()
-    initializers.InitDB()
+    initializers.Init()
 }
 
 func main() {
