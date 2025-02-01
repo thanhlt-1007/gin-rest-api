@@ -3,6 +3,7 @@ package auth_controller
 import (
     "fmt"
     "gin-rest-api/services/user_service"
+    "gin-rest-api/utils/response"
     "github.com/gin-gonic/gin"
     "net/http"
     request "gin-rest-api/requests/api/v1/user/auth"
@@ -26,8 +27,8 @@ func SignUp() gin.HandlerFunc {
 
         user := user_service.SignUp(signUpRequest)
 
-        context.JSON(
-            http.StatusOK,
+        response.ResponseOK(
+            context,
             serializer.Serializer(user),
         )
     }
