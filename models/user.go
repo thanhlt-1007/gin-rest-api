@@ -7,5 +7,5 @@ import (
 type User struct {
 	gorm.Model
 	Email string
-	Name string
+	Name *string
 }
