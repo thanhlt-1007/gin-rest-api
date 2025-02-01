@@ -5,7 +5,6 @@ import (
     "gin-rest-api/services/user_service"
     "gin-rest-api/utils/response"
     "github.com/gin-gonic/gin"
-    "net/http"
     request "gin-rest-api/requests/api/v1/user/auth"
     serializer "gin-rest-api/serializers/api/v1/user/auth"
 )
@@ -16,13 +15,7 @@ func SignUp() gin.HandlerFunc {
         err := context.ShouldBind(&signUpRequest)
         if err != nil {
             fmt.Printf("SignUp err %#v - %v\n", err, err)
-            context.JSON(
-                http.StatusUnprocessableEntity,
-                gin.H {
-                    "error": err.Error(),
-                },
-            )
-            return
+            panic(err)
         }
 
         user := user_service.SignUp(signUpRequest)
