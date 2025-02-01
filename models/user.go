@@ -5,7 +5,8 @@ import (
 )
 
 type User struct {
-	gorm.Model
-	Email string
-	Name *string
+    gorm.Model
+    Email string
+    Name *string
+    EncryptedPassword string
 }
