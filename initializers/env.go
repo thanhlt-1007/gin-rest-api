@@ -10,8 +10,8 @@ func InitEnv() {
 
     err := godotenv.Load()
     if err != nil {
-        fmt.Printf("Init env error [%v], skip load ENV from .env\n", err)
+        fmt.Printf("Error [%v], skip load ENV from .env\n", err)
     }
 
-    fmt.Println("Init env success")
+    fmt.Println("\n---INIT-ENV-SUCCESS---")
 }
