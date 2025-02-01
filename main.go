@@ -1,25 +1,14 @@
 package main
 
 import (
+    "gin-rest-api/routers"
     "github.com/gin-gonic/gin"
-    "net/http"
 )
-
-func getPingHandler() gin.HandlerFunc {
-    return func(context *gin.Context) {
-        context.JSON(
-            http.StatusOK,
-            gin.H {
-                "message": "pong",
-            },
-        )
-    }
-}
 
 func main() {
     engine := gin.Default()
 
-    engine.GET("/ping", getPingHandler())
+    routers.SetPingRouters(engine)
 
     engine.Run()
 }
