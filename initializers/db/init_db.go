@@ -8,18 +8,17 @@ import (
     "os"
 )
 
-var DB *gorm.DB
-
-func InitDB() {
+func InitDB() *gorm.DB {
     fmt.Println("\n---INIT-DB---")
 
-    openDB()
-    migrateDB()
+    db := openDB()
+    migrateDB(db)
 
     fmt.Println("\n---INIT-DB-SUCCESS---")
+    return db
 }
 
-func openDB() {
+func openDB() *gorm.DB {
     fmt.Println("\n---OPEN-DB---")
 
     db, err := gorm.Open(
@@ -31,15 +30,14 @@ func openDB() {
         panic(err)
     }
 
-    DB = db
-
     fmt.Println("\n---OPEN-DB-SUCCESS---")
+    return db
 }
 
-func migrateDB() {
+func migrateDB(db *gorm.DB) {
     fmt.Println("\n---MIGRATE-DB---")
 
-    err := DB.AutoMigrate(&models.User{})
+    err := db.AutoMigrate(&models.User{})
     if err != nil {
         fmt.Printf("Error [%v]\n", err)
         panic(err)
