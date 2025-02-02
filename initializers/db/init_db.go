@@ -5,6 +5,7 @@ import (
     "gin-rest-api/models"
     "gorm.io/driver/sqlite"
     "gorm.io/gorm"
+    "gorm.io/gorm/logger"
     "os"
 )
 
@@ -23,7 +24,9 @@ func openDB() *gorm.DB {
 
     db, err := gorm.Open(
         sqlite.Open(os.Getenv("DB_NAME")),
-        &gorm.Config{},
+        &gorm.Config{
+            Logger: logger.Default.LogMode(logger.Info),
+        },
     )
     if err != nil {
         fmt.Printf("Error [%v]\n", err)
