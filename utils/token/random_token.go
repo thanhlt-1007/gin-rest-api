@@ -5,5 +5,5 @@ import (
 )
 
 func RandomToken() string {
-    return randstr.Hex(200)
+    return randstr.Hex(255)
 }
