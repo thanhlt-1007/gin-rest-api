@@ -16,13 +16,7 @@ func Recover() gin.HandlerFunc {
                 if err, ok := recovered.(validator.ValidationErrors); ok {
                     response.ResponseValidationError(context, err)
                 } else if err, ok := recovered.(error); ok {
-                    context.JSON(
-                        http.StatusInternalServerError,
-                        gin.H {
-                            "message": fmt.Sprintf("UNKNOW_ERROR: %s", err.Error()),
-                            "code": "INTERNAL_SERVER_ERROR",
-                        },
-                    )
+                    response.ResponseInternalServerError(context, err)
                 } else {
                     context.JSON(
                         http.StatusInternalServerError,
