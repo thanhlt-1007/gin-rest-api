@@ -5,9 +5,11 @@ import (
     "gin-rest-api/responses/api/v1/user/auth/sign_up_response"
 )
 
-func Serializer(user models.User) sign_up_response.Response {
+func Serializer(token models.Token) sign_up_response.Response {
     return sign_up_response.Response {
-        ID: user.ID,
-        Email: user.Email,
+        ID: token.ID,
+        AccessToken: token.AccessToken,
+        RefreshToken: token.RefreshToken,
+        ExpiresAt: token.ExpiresAt,
     }
 }

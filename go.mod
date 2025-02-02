@@ -7,6 +7,7 @@ require (
 	github.com/go-playground/validator/v10 v10.20.0
 	github.com/iancoleman/strcase v0.3.0
 	github.com/joho/godotenv v1.5.1
+	github.com/thanhpk/randstr v1.0.6
 	golang.org/x/crypto v0.23.0
 	gorm.io/driver/sqlite v1.5.7
 	gorm.io/gorm v1.25.12

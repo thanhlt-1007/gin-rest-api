@@ -16,11 +16,11 @@ func Post() gin.HandlerFunc {
             panic(err)
         }
 
-        user := sign_up_service.Perform(request)
+        token := sign_up_service.Perform(request)
 
         response_ok.JSON(
             context,
-            sign_up_serializer.Serializer(user),
+            sign_up_serializer.Serializer(token),
         )
     }
 }
