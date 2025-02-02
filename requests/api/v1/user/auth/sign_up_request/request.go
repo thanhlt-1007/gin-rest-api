@@ -1,6 +1,6 @@
-package auth
+package sign_up_request
 
-type SignUpRequest struct {
+type Request struct {
     Email string `form:"email" binding:"required"`
     Password string `form:"password" binding:"required"`
 }
