@@ -1,11 +1,9 @@
 package middlewares
 
 import (
-    "fmt"
     "gin-rest-api/utils/response"
     "github.com/gin-gonic/gin"
     "github.com/go-playground/validator/v10"
-    "net/http"
 )
 
 func Recover() gin.HandlerFunc {
@@ -18,13 +16,7 @@ func Recover() gin.HandlerFunc {
                 } else if err, ok := recovered.(error); ok {
                     response.ResponseInternalServerError(context, err)
                 } else {
-                    context.JSON(
-                        http.StatusInternalServerError,
-                        gin.H {
-                            "message": fmt.Sprintf("UNKNOW_PANIC: %#v - %v", recovered, recovered),
-                            "code": "INTERNAL_SERVER_ERROR",
-                        },
-                    )
+                    response.ResponseUnkownPanicError(context, recovered)
                 }
                 context.Abort()
             }
