@@ -20,8 +20,8 @@ func Recover() gin.HandlerFunc {
                 } else if err, ok := recovered.(error); ok{
                     // FYI
                     // Hanlde `gorm:"uniqueIndex"`
-                    if err, ok := errors.IsUniqueContraintError(err); ok {
-                        response_unique_contraint_error.JSON(context, *err)
+                    if uniqueContraintError, ok := errors.IsUniqueContraintError(err); ok {
+                        response_unique_contraint_error.JSON(context, *uniqueContraintError)
                     } else {
                         response_internal_server_error.JSON(context, err)
                     }
