@@ -2,15 +2,11 @@ package middlewares
 
 import (
     "fmt"
+    "gin-rest-api/responses/errors/field_error_response"
     "github.com/gin-gonic/gin"
     "github.com/go-playground/validator/v10"
     "net/http"
 )
-
-type FieldErrorResponse struct {
-    Field string
-    Tag string
-}
 
 func Recover() gin.HandlerFunc {
     return func(context *gin.Context) {
@@ -21,10 +17,10 @@ func Recover() gin.HandlerFunc {
                     fmt.Printf("err: %v\n", err)
                     fmt.Printf("err: %#v\n", err)
 
-                    var serializers []FieldErrorResponse
+                    var serializers []field_error_response.Response
 
                     for _, fieldError := range err {
-                        serializer := FieldErrorResponse {
+                        serializer := field_error_response.Response {
                             Field: fieldError.Field(),
                             Tag: fieldError.Tag(),
                         }
