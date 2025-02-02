@@ -7,7 +7,7 @@ import (
 
 func Serializer(err any) internal_server_error_response.Response {
     return internal_server_error_response.Response {
-        Message: fmt.Sprintf("UNKNOW_PANIC: [%v] - [%#v]", err, err),
+        Message: fmt.Sprintf("UNKNOW_PANIC Type: [%T], Error: [%v], Error: [%#v]", err, err, err),
 		Code: "INTERNAL_SERVER_ERROR",
     }
 }
