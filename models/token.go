@@ -9,9 +9,9 @@ type Token struct {
     CreatedAt time.Time
     UpdatedAt time.Time
     TokenableID uint
-    TokenableType string
+    TokenableType string `gorm:"size:255;"`
 
-    AccessToken string `gorm:"uniqueIndex"`
-    RefreshToken string `gorm:"uniqueIndex"`
+    AccessToken string `gorm:"uniqueIndex;size:255;"`
+    RefreshToken string `gorm:"uniqueIndex;size:255;"`
     ExpiresAt time.Time
 }
