@@ -1,4 +1,4 @@
-package response
+package response_validation_error
 
 import (
     "gin-rest-api/serializers/errors/validation_error_serializer"
@@ -7,7 +7,7 @@ import (
     "net/http"
 )
 
-func ResponseValidationError(context *gin.Context, err validator.ValidationErrors) {
+func JSON(context *gin.Context, err validator.ValidationErrors) {
     context.JSON(
         http.StatusBadRequest,
         validation_error_serializer.Serializer(err),
