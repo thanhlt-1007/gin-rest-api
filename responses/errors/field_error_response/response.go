@@ -1,6 +1,6 @@
 package field_error_response
 
 type Response struct {
-    Field string
-    Tag string
+    Field string `json:"field"`
+    Tag string `json:"tag"`
 }
