@@ -9,4 +9,5 @@ type User struct {
     Email string `gorm:"uniqueIndex"`
     Name *string
     EncryptedPassword string
+    Tokens []Token `gorm:"polymorphic:Tokenable;constraint:OnDelete:CASCADE;"`
 }

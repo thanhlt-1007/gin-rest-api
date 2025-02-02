@@ -40,7 +40,7 @@ func openDB() *gorm.DB {
 func migrateDB(db *gorm.DB) {
     fmt.Println("\n---MIGRATE-DB---")
 
-    err := db.AutoMigrate(&models.User{})
+    err := db.AutoMigrate(&models.User{}, &models.Token{})
     if err != nil {
         fmt.Printf("Error [%v]\n", err)
         panic(err)
