@@ -7,8 +7,11 @@ import (
 )
 
 func Serializer(err validator.FieldError) field_error_response.Response {
+    field := strcase.ToSnake(err.Field())
+    tag := err.Tag()
+
     return field_error_response.Response {
-        Field: strcase.ToSnake(err.Field()),
-        Tag: err.Tag(),
+        Field: field,
+        Tag: tag,
     }
 }
