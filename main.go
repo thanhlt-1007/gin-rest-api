@@ -6,6 +6,7 @@ import (
     "gin-rest-api/middlewares"
     "gin-rest-api/router"
     "gin-rest-api/validators"
+    "gin-rest-api/swagger"
     "log"
 )
 
@@ -14,6 +15,7 @@ func init() {
     database.Migrate()
     validators.Init()
     middlewares.Init()
+    swagger.Init()
     router.Init()
 }
 
