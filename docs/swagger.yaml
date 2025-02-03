@@ -1,0 +1,30 @@
+definitions:
+  get_ping.SuccessResponse:
+    properties:
+      data:
+        $ref: '#/definitions/ping_response.Response'
+    type: object
+  ping_response.Response:
+    properties:
+      message:
+        example: pong
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /ping:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/get_ping.SuccessResponse'
+      summary: GET ping used for healthcheck
+      tags:
+      - Ping
+swagger: "2.0"

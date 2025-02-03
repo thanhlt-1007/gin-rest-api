@@ -8,7 +8,7 @@ import (
     "github.com/gin-gonic/gin"
 )
 
-func Post() gin.HandlerFunc {
+func PostSignUp() gin.HandlerFunc {
     return func(context *gin.Context) {
         var request sign_up_request.Request
         err := context.ShouldBind(&request)

@@ -36,6 +36,28 @@ atlas migrate diff --env gorm --dev-url 'mysql://root:Aa@123456@localhost:3306/g
 
 - Reference: https://atlasgo.io/guides/orms/gorm/composite-types#generate-migrations-for-the-schema
 
+## API doc
+
+### Install swag
+
+```sh
+go install github.com/swaggo/swag/cmd/swag@latest
+```
+
+- Reference: https://github.com/swaggo/swag?tab=readme-ov-file#getting-started
+
+### Init / update API doc
+
+```sh
+swag init
+```
+
+### Swagger UI
+
+```sh
+http://localhost:8080/swagger/index.html
+```
+
 ## go run
 
 ```sh

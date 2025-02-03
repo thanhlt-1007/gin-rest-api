@@ -1,17 +1,23 @@
 package ping_controller
 
 import (
+    "gin-rest-api/serializers/ping_serializer"
+    "gin-rest-api/utils/response/response_ok"
     "github.com/gin-gonic/gin"
-    "net/http"
 )
 
+// godoc
+// @Tags Ping
+// @Router /ping [get]
+// @Summary GET ping used for healthcheck
+// @Accept json
+// @Produce json
+// @Success 200	{object} get_ping.SuccessResponse
 func GetPing() gin.HandlerFunc {
     return func(context *gin.Context) {
-        context.JSON(
-            http.StatusOK,
-            gin.H {
-                "message": "pong",
-            },
+        response_ok.JSON(
+            context,
+            ping_serializer.Serializer(),
         )
     }
 }
