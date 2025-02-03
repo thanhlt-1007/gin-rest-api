@@ -4,7 +4,7 @@ import (
     "github.com/gin-gonic/gin"
 )
 
-func InitEngine() *gin.Engine {
+func Init() *gin.Engine {
     engine := gin.Default()
 
     return engine

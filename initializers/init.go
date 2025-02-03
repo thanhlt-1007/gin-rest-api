@@ -12,7 +12,7 @@ var DB *gorm.DB
 var ENGINE *gin.Engine
 
 func Init() {
-    env.InitEnv()
+    env.Init()
     DB = db.InitDB()
-    ENGINE = engine.InitEngine()
+    ENGINE = engine.Init()
 }
