@@ -10,7 +10,7 @@ import (
     "github.com/go-playground/validator/v10"
 )
 
-func Recover() gin.HandlerFunc {
+func Recovery() gin.HandlerFunc {
     return func(context *gin.Context) {
         defer func ()  {
             recovered := recover()
