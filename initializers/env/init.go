@@ -4,6 +4,6 @@ import (
     "github.com/joho/godotenv"
 )
 
-func InitEnv() {
+func Init() {
     godotenv.Load()
 }
