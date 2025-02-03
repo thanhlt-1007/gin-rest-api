@@ -12,7 +12,7 @@ func init() {
     initializers.Init()
     database.Migrate()
     validators.Init()
-    initializers.ENGINE.Use(middlewares.Recover())
+    middlewares.Init()
     router.Init()
 }
 
