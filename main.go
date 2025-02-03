@@ -6,6 +6,7 @@ import (
     "gin-rest-api/middlewares"
     "gin-rest-api/router"
     "gin-rest-api/validators"
+    "log"
 )
 
 func init() {
@@ -17,5 +18,6 @@ func init() {
 }
 
 func main() {
+    log.Printf("Run engine")
     initializers.ENGINE.Run()
 }
