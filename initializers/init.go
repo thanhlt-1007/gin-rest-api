@@ -13,6 +13,6 @@ var ENGINE *gin.Engine
 
 func Init() {
     env.Init()
-    DB = db.InitDB()
+    DB = db.Init()
     ENGINE = engine.Init()
 }
