@@ -5,10 +5,13 @@ import (
     "gorm.io/driver/mysql"
     "gorm.io/gorm"
     "gorm.io/gorm/logger"
+    "log"
     "os"
+    fmt_util "gin-rest-api/utils/fmt"
 )
 
 func Open() *gorm.DB {
+    log.Println("Open database")
     dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=True&loc=Local",
         os.Getenv("MYSQL_USER"),
         os.Getenv("MYSQL_PASSWORD"),
@@ -24,7 +27,7 @@ func Open() *gorm.DB {
         },
     )
     if err != nil {
-        fmt.Printf("Error [%v]\n", err)
+        log.Printf("gorm.Open() error\n%s", fmt_util.SprintfError(err))
         panic(err)
     }
 

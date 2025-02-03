@@ -6,14 +6,17 @@ import (
     "fmt"
     "log"
     "os"
+    fmt_util "gin-rest-api/utils/fmt"
 )
 
 func Migrate() {
+    log.Println("Migrate database")
     // FYI
     // Reference: https://atlasgo.io/guides/orms/gorm/composite-types#apply-the-migrations
     client, err := atlasexec.NewClient(".", "atlas")
     if err != nil {
-        log.Fatalf("atlasexec.NewClient() error: %v", err)
+        log.Printf("atlasexec.NewClient() error\n%s", fmt_util.SprintfError(err))
+        panic(err)
     }
 
     env := "gorm"
@@ -28,6 +31,7 @@ func Migrate() {
         Env: env,
         URL: url,
     }); err != nil {
-        log.Fatalf("client.MigrateApply() error: %v", err)
+        log.Printf("client.MigrateApply() error\n%s", fmt_util.SprintfError(err))
+        panic(err)
     }
 }
