@@ -1,6 +1,9 @@
 package sign_up_controller
 
 import (
+    _ "gin-rest-api/swagger/responses/api/v1/user/auth/sign_up_controller/sign_up"
+    _ "gin-rest-api/responses/errors/validation_error_response"
+    _ "gin-rest-api/responses/errors/internal_server_error_response"
     "gin-rest-api/requests/api/v1/user/auth/sign_up_request"
     "gin-rest-api/serializers/api/v1/user/auth/sign_up_serializer"
     "gin-rest-api/services/user/sign_up_service"
@@ -8,7 +11,17 @@ import (
     "github.com/gin-gonic/gin"
 )
 
-func PostSignUp() gin.HandlerFunc {
+// godoc
+// @Tags User-Auth-SignUp
+// @Router /user/auth/sign_up [post]
+// @Summary User sign up
+// @Accept json
+// @Produce json
+// @Param request body sign_up_request.Request true "Sign up request body"
+// @Success 200	{object} sign_up.SuccessResponse
+// @Failure 422 {object} validation_error_response.Response
+// @Failure 500 {object} internal_server_error_response.Response
+func SignUp() gin.HandlerFunc {
     return func(context *gin.Context) {
         var request sign_up_request.Request
         err := context.ShouldBind(&request)

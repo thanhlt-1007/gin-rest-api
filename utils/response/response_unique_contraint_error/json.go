@@ -9,7 +9,7 @@ import (
 
 func JSON(context *gin.Context, err errors.UniqueContraintError) {
     context.JSON(
-        http.StatusBadRequest,
+        http.StatusUnprocessableEntity,
         unique_contraint_error_serializer.Serializer(err),
     )
 }

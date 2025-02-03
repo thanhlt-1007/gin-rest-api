@@ -1,6 +1,7 @@
 package ping_controller
 
 import (
+    _ "gin-rest-api/swagger/responses/ping_controller/get_ping"
     "gin-rest-api/serializers/ping_serializer"
     "gin-rest-api/utils/response/response_ok"
     "github.com/gin-gonic/gin"

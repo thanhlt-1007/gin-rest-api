@@ -9,7 +9,7 @@ import (
 
 func JSON(context *gin.Context, err validator.ValidationErrors) {
     context.JSON(
-        http.StatusBadRequest,
+        http.StatusUnprocessableEntity,
         validation_error_serializer.Serializer(err),
     )
 }

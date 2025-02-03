@@ -5,7 +5,7 @@ import (
 )
 
 type Response struct {
-    Message string `json:"message"`
-    Code string `json:"code"`
+    Message string `json:"message" example:"Validation Error"`
+    Code string `json:"code" example:"VALIDATION_ERROR"`
     Errors []field_error_response.Response `json:"errors"`
 }
