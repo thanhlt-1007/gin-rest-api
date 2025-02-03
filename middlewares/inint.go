@@ -7,5 +7,5 @@ import (
 
 func Init() {
     log.Println("Init middlewares")
-    initializers.ENGINE.Use(Recover())
+    initializers.ENGINE.Use(Recovery())
 }
