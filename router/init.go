@@ -4,9 +4,11 @@ import (
     "gin-rest-api/controllers/api/v1/user/auth/sign_up_controller"
     "gin-rest-api/controllers/ping_controller"
     "gin-rest-api/initializers"
+    "log"
 )
 
 func Init() {
+    log.Printf("Init router")
     ping()
     apiV1UserAuth()
 }

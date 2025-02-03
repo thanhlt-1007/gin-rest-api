@@ -1,9 +1,11 @@
 package middlewares
 
 import (
-	"gin-rest-api/initializers"
+    "gin-rest-api/initializers"
+    "log"
 )
 
 func Init() {
-	initializers.ENGINE.Use(Recover())
+    log.Println("Init middlewares")
+    initializers.ENGINE.Use(Recover())
 }
