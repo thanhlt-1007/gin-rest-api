@@ -19,5 +19,5 @@ func ping() {
 
 func apiV1UserAuth() {
     authRouterGroup := initializers.ENGINE.Group("/api/v1/user/auth")
-    authRouterGroup.POST("/sign_up", sign_up_controller.PostSignUp())
+    authRouterGroup.POST("/sign_up", sign_up_controller.SignUp())
 }

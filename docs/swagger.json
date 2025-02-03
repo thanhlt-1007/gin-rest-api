@@ -25,14 +25,83 @@
                     }
                 }
             }
+        },
+        "/user/auth/sign_up": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User-Auth-SignUp"
+                ],
+                "summary": "User sign up",
+                "parameters": [
+                    {
+                        "description": "Sign up request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sign_up_request.Request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/sign_up.SuccessResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/validation_error_response.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error_response.Response"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "field_error_response.Response": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string",
+                    "example": "email"
+                },
+                "tag": {
+                    "type": "string",
+                    "example": "required"
+                }
+            }
+        },
         "get_ping.SuccessResponse": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/ping_response.Response"
+                }
+            }
+        },
+        "internal_server_error_response.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
                 }
             }
         },
@@ -42,6 +111,78 @@
                 "message": {
                     "type": "string",
                     "example": "pong"
+                }
+            }
+        },
+        "sign_up.SuccessResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/sign_up_response.Response"
+                }
+            }
+        },
+        "sign_up_request.Request": {
+            "type": "object",
+            "required": [
+                "confirm_password",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "confirm_password": {
+                    "type": "string",
+                    "example": "Aa@123456"
+                },
+                "email": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "example": "user@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "example": "Aa@123456"
+                }
+            }
+        },
+        "sign_up_response.Response": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "example": "xxx"
+                },
+                "expires_at": {
+                    "type": "string",
+                    "example": "2025-12-31T12:30:00.0000+07:00"
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "refresh_token": {
+                    "type": "string",
+                    "example": "xxx"
+                }
+            }
+        },
+        "validation_error_response.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "VALIDATION_ERROR"
+                },
+                "errors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/field_error_response.Response"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Validation Error"
                 }
             }
         }

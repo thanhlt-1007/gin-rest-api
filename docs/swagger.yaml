@@ -1,13 +1,80 @@
 definitions:
+  field_error_response.Response:
+    properties:
+      field:
+        example: email
+        type: string
+      tag:
+        example: required
+        type: string
+    type: object
   get_ping.SuccessResponse:
     properties:
       data:
         $ref: '#/definitions/ping_response.Response'
     type: object
+  internal_server_error_response.Response:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
   ping_response.Response:
     properties:
       message:
         example: pong
+        type: string
+    type: object
+  sign_up.SuccessResponse:
+    properties:
+      data:
+        $ref: '#/definitions/sign_up_response.Response'
+    type: object
+  sign_up_request.Request:
+    properties:
+      confirm_password:
+        example: Aa@123456
+        type: string
+      email:
+        example: user@example.com
+        maxLength: 255
+        type: string
+      password:
+        example: Aa@123456
+        maxLength: 255
+        type: string
+    required:
+    - confirm_password
+    - email
+    - password
+    type: object
+  sign_up_response.Response:
+    properties:
+      access_token:
+        example: xxx
+        type: string
+      expires_at:
+        example: "2025-12-31T12:30:00.0000+07:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      refresh_token:
+        example: xxx
+        type: string
+    type: object
+  validation_error_response.Response:
+    properties:
+      code:
+        example: VALIDATION_ERROR
+        type: string
+      errors:
+        items:
+          $ref: '#/definitions/field_error_response.Response'
+        type: array
+      message:
+        example: Validation Error
         type: string
     type: object
 info:
@@ -27,4 +94,33 @@ paths:
       summary: GET ping used for healthcheck
       tags:
       - Ping
+  /user/auth/sign_up:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Sign up request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/sign_up_request.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/sign_up.SuccessResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/validation_error_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal_server_error_response.Response'
+      summary: User sign up
+      tags:
+      - User-Auth-SignUp
 swagger: "2.0"
