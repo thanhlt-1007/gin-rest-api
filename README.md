@@ -58,6 +58,12 @@ swag init
 http://localhost:8080/swagger/index.html
 ```
 
+## go test
+
+```sh
+go clean -testcache && go test ./tests/... -v
+```
+
 ## go run
 
 ```sh

@@ -8,15 +8,20 @@ import (
     "log"
     "os"
     fmt_util "gin-rest-api/utils/fmt"
+    database_util "gin-rest-api/utils/database"
 )
 
 func Open() *gorm.DB {
     log.Println("Open database")
+
+    dbName := database_util.DBName()
+    log.Printf("\tDB name: %s\n", dbName)
+
     dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=True&loc=Local",
         os.Getenv("MYSQL_USER"),
         os.Getenv("MYSQL_PASSWORD"),
         os.Getenv("MYSQL_HOST"),
-        os.Getenv("MYSQL_DATABASE"),
+        dbName,
         os.Getenv("MYSQL_CHARACTER_SET"),
     )
 
