@@ -8,8 +8,6 @@ import (
 func JSON(context *gin.Context, data any) {
     context.JSON(
         http.StatusOK,
-        gin.H {
-            "data": data,
-        },
+        data,
     )
 }
