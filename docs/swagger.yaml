@@ -8,7 +8,7 @@ definitions:
         example: required
         type: string
     type: object
-  get_ping_response.DataResponse:
+  get_ping_response.Data:
     properties:
       message:
         example: pong
@@ -17,19 +17,16 @@ definitions:
   get_ping_response.Response:
     properties:
       data:
-        $ref: '#/definitions/get_ping_response.DataResponse'
+        $ref: '#/definitions/get_ping_response.Data'
     type: object
   internal_server_error_response.Response:
     properties:
       code:
+        example: INTERNAL_SERVER_ERROR
         type: string
       message:
+        example: Internal Server Error
         type: string
-    type: object
-  sign_up.SuccessResponse:
-    properties:
-      data:
-        $ref: '#/definitions/sign_up_response.Response'
     type: object
   sign_up_request.Request:
     properties:
@@ -49,7 +46,7 @@ definitions:
     - email
     - password
     type: object
-  sign_up_response.Response:
+  sign_up_response.Data:
     properties:
       access_token:
         example: xxx
@@ -63,6 +60,11 @@ definitions:
       refresh_token:
         example: xxx
         type: string
+    type: object
+  sign_up_response.Response:
+    properties:
+      data:
+        $ref: '#/definitions/sign_up_response.Data'
     type: object
   validation_error_response.Response:
     properties:
@@ -111,7 +113,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/sign_up.SuccessResponse'
+            $ref: '#/definitions/sign_up_response.Response'
         "422":
           description: Unprocessable Entity
           schema:

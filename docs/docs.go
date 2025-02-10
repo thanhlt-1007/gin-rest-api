@@ -64,7 +64,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/sign_up.SuccessResponse"
+                            "$ref": "#/definitions/sign_up_response.Response"
                         }
                     },
                     "422": {
@@ -97,7 +97,7 @@ const docTemplate = `{
                 }
             }
         },
-        "get_ping_response.DataResponse": {
+        "get_ping_response.Data": {
             "type": "object",
             "properties": {
                 "message": {
@@ -110,7 +110,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/get_ping_response.DataResponse"
+                    "$ref": "#/definitions/get_ping_response.Data"
                 }
             }
         },
@@ -118,18 +118,12 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "code": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "INTERNAL_SERVER_ERROR"
                 },
                 "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "sign_up.SuccessResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/sign_up_response.Response"
+                    "type": "string",
+                    "example": "Internal Server Error"
                 }
             }
         },
@@ -157,7 +151,7 @@ const docTemplate = `{
                 }
             }
         },
-        "sign_up_response.Response": {
+        "sign_up_response.Data": {
             "type": "object",
             "properties": {
                 "access_token": {
@@ -175,6 +169,14 @@ const docTemplate = `{
                 "refresh_token": {
                     "type": "string",
                     "example": "xxx"
+                }
+            }
+        },
+        "sign_up_response.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/sign_up_response.Data"
                 }
             }
         },

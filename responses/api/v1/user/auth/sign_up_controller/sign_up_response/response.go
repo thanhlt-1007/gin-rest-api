@@ -5,6 +5,10 @@ import (
 )
 
 type Response struct {
+    Data Data `json:"data"`
+}
+
+type Data struct {
     ID uint `json:"id" example:"1"`
     AccessToken string `json:"access_token" example:"xxx"`
     RefreshToken string `json:"refresh_token" example:"xxx"`
