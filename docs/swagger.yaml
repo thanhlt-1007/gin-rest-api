@@ -8,22 +8,22 @@ definitions:
         example: required
         type: string
     type: object
-  get_ping.SuccessResponse:
+  get_ping_response.DataResponse:
+    properties:
+      message:
+        example: pong
+        type: string
+    type: object
+  get_ping_response.Response:
     properties:
       data:
-        $ref: '#/definitions/ping_response.Response'
+        $ref: '#/definitions/get_ping_response.DataResponse'
     type: object
   internal_server_error_response.Response:
     properties:
       code:
         type: string
       message:
-        type: string
-    type: object
-  ping_response.Response:
-    properties:
-      message:
-        example: pong
         type: string
     type: object
   sign_up.SuccessResponse:
@@ -90,7 +90,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/get_ping.SuccessResponse'
+            $ref: '#/definitions/get_ping_response.Response'
       summary: GET ping used for healthcheck
       tags:
       - Ping

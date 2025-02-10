@@ -31,7 +31,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/get_ping.SuccessResponse"
+                            "$ref": "#/definitions/get_ping_response.Response"
                         }
                     }
                 }
@@ -97,11 +97,20 @@ const docTemplate = `{
                 }
             }
         },
-        "get_ping.SuccessResponse": {
+        "get_ping_response.DataResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "pong"
+                }
+            }
+        },
+        "get_ping_response.Response": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/ping_response.Response"
+                    "$ref": "#/definitions/get_ping_response.DataResponse"
                 }
             }
         },
@@ -113,15 +122,6 @@ const docTemplate = `{
                 },
                 "message": {
                     "type": "string"
-                }
-            }
-        },
-        "ping_response.Response": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string",
-                    "example": "pong"
                 }
             }
         },
