@@ -5,9 +5,11 @@ import (
     "gin-rest-api/models"
     "gin-rest-api/utils/token"
     "time"
+    "log"
+    fmt_util "gin-rest-api/utils/fmt"
 )
 
-func CreateUserToken(user models.User) models.Token {
+func CreateUserToken(user *models.User) (*models.Token, error) {
     token := models.Token {
         TokenableType: "User",
         TokenableID: user.ID,
@@ -15,12 +17,12 @@ func CreateUserToken(user models.User) models.Token {
         RefreshToken: token.UniqueToken("refresh_token"),
         ExpiresAt: time.Now().Add(2 * time.Hour),
     }
-    result := initializers.DB.Create(&token)
-
-    err := result.Error
+    tx := initializers.DB.Create(&token)
+    err := tx.Error
     if err != nil {
-        panic(err)
+        log.Printf("user_repository.CreateUser error\n%s", fmt_util.SprintfError(err))
+        return nil, err
     }
 
-    return token
+    return &token, nil
 }
