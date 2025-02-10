@@ -6,7 +6,7 @@ import (
 )
 
 func Serializer(token models.Token) sign_up_response.Response {
-    data := sign_up_response.DataResponse{
+    data := sign_up_response.Data{
         ID: token.ID,
         AccessToken: token.AccessToken,
         RefreshToken: token.RefreshToken,
