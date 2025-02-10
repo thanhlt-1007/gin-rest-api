@@ -5,7 +5,7 @@ import (
 )
 
 func Serializer() get_ping_response.Response {
-    data := get_ping_response.DataResponse{
+    data := get_ping_response.Data{
         Message: "pong",
     }
 
