@@ -21,7 +21,7 @@ func CreateUserToken(user *models.User) (*models.Token, error) {
 	tx := initializers.DB.Create(&token)
 	err := tx.Error
 	if err != nil {
-		log.Printf("user_repository.CreateUser error\n%s", fmt_util.SprintfError(err))
+		log.Printf("token_repository.CreateUserToken Create error\n%s", fmt_util.SprintfError(err))
 		return nil, err
 	}
 
