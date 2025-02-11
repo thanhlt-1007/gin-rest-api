@@ -74,8 +74,22 @@ go install mvdan.cc/gofumpt@latest
 
 - Reference: https://github.com/mvdan/gofumpt?tab=readme-ov-file#gofumpt
 
-### Format code
+### gofumpt
 
 ```sh
 gofumpt -e -l -w .
+```
+
+### Lint tool
+
+### Install golangci-lint
+
+```sh
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.63.4
+```
+
+### golangci-lint
+
+```sh
+golangci-lint run
 ```
