@@ -8,6 +8,23 @@ definitions:
         example: required
         type: string
     type: object
+  get_me_response.Data:
+    properties:
+      email:
+        example: user@example.com
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        example: USER
+        type: string
+    type: object
+  get_me_response.Response:
+    properties:
+      data:
+        $ref: '#/definitions/get_me_response.Data'
+    type: object
   get_ping_response.Data:
     properties:
       message:
@@ -195,4 +212,26 @@ paths:
       summary: User sign up
       tags:
       - User-Auth-SignUp
+  /user/me:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/get_me_response.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/unauthorized_error_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal_server_error_response.Response'
+      summary: User get info
+      tags:
+      - User-Me
 swagger: "2.0"
