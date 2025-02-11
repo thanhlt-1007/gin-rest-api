@@ -28,6 +28,38 @@ definitions:
         example: Internal Server Error
         type: string
     type: object
+  sign_in_request.Request:
+    properties:
+      email:
+        example: user@example.com
+        type: string
+      password:
+        example: Aa@123456
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  sign_in_response.Data:
+    properties:
+      access_token:
+        example: xxx
+        type: string
+      expires_at:
+        example: "2025-12-31T12:30:00.0000+07:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      refresh_token:
+        example: xxx
+        type: string
+    type: object
+  sign_in_response.Response:
+    properties:
+      data:
+        $ref: '#/definitions/sign_in_response.Data'
+    type: object
   sign_up_request.Request:
     properties:
       confirm_password:
@@ -66,6 +98,15 @@ definitions:
       data:
         $ref: '#/definitions/sign_up_response.Data'
     type: object
+  unauthorized_error_response.Response:
+    properties:
+      code:
+        example: UNAUTHORIZED_ERROR
+        type: string
+      message:
+        example: Unauthorized Error
+        type: string
+    type: object
   validation_error_response.Response:
     properties:
       code:
@@ -96,6 +137,35 @@ paths:
       summary: GET ping used for healthcheck
       tags:
       - Ping
+  /user/auth/sign_in:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Sign in request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/sign_in_request.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/sign_in_response.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/unauthorized_error_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal_server_error_response.Response'
+      summary: User sign in
+      tags:
+      - User-Auth-SignIn
   /user/auth/sign_up:
     post:
       consumes:

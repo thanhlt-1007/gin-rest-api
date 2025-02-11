@@ -37,6 +37,51 @@ const docTemplate = `{
                 }
             }
         },
+        "/user/auth/sign_in": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User-Auth-SignIn"
+                ],
+                "summary": "User sign in",
+                "parameters": [
+                    {
+                        "description": "Sign in request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/sign_in_request.Request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/sign_in_response.Response"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/unauthorized_error_response.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error_response.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/user/auth/sign_up": {
             "post": {
                 "consumes": [
@@ -127,6 +172,52 @@ const docTemplate = `{
                 }
             }
         },
+        "sign_in_request.Request": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "user@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "Aa@123456"
+                }
+            }
+        },
+        "sign_in_response.Data": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "example": "xxx"
+                },
+                "expires_at": {
+                    "type": "string",
+                    "example": "2025-12-31T12:30:00.0000+07:00"
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "refresh_token": {
+                    "type": "string",
+                    "example": "xxx"
+                }
+            }
+        },
+        "sign_in_response.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/sign_in_response.Data"
+                }
+            }
+        },
         "sign_up_request.Request": {
             "type": "object",
             "required": [
@@ -177,6 +268,19 @@ const docTemplate = `{
             "properties": {
                 "data": {
                     "$ref": "#/definitions/sign_up_response.Data"
+                }
+            }
+        },
+        "unauthorized_error_response.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "example": "UNAUTHORIZED_ERROR"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Unauthorized Error"
                 }
             }
         },
