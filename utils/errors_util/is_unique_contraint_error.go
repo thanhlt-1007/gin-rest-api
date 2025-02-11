@@ -1,4 +1,4 @@
-package errors
+package errors_util
 
 import (
     "regexp"
