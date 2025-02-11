@@ -1,16 +1,16 @@
 package sign_up_response
 
 import (
-    "time"
+	"time"
 )
 
 type Response struct {
-    Data Data `json:"data"`
+	Data Data `json:"data"`
 }
 
 type Data struct {
-    ID uint `json:"id" example:"1"`
-    AccessToken string `json:"access_token" example:"xxx"`
-    RefreshToken string `json:"refresh_token" example:"xxx"`
-    ExpiresAt time.Time `json:"expires_at" example:"2025-12-31T12:30:00.0000+07:00"`
+	ID           uint      `json:"id" example:"1"`
+	AccessToken  string    `json:"access_token" example:"xxx"`
+	RefreshToken string    `json:"refresh_token" example:"xxx"`
+	ExpiresAt    time.Time `json:"expires_at" example:"2025-12-31T12:30:00.0000+07:00"`
 }

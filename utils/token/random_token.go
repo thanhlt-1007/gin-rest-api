@@ -1,9 +1,9 @@
 package token
 
 import (
-    "github.com/thanhpk/randstr"
+	"github.com/thanhpk/randstr"
 )
 
 func RandomToken() string {
-    return randstr.Hex(255)
+	return randstr.Hex(255)
 }

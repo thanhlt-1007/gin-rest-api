@@ -1,13 +1,14 @@
 package response_ok
 
 import (
-    "github.com/gin-gonic/gin"
-    "net/http"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func JSON(context *gin.Context, data any) {
-    context.JSON(
-        http.StatusOK,
-        data,
-    )
+	context.JSON(
+		http.StatusOK,
+		data,
+	)
 }
