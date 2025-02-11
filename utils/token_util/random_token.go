@@ -1,4 +1,4 @@
-package token
+package token_util
 
 import (
 	"github.com/thanhpk/randstr"
