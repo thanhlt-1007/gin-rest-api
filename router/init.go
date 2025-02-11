@@ -1,23 +1,24 @@
 package router
 
 import (
-    "gin-rest-api/controllers/api/v1/user/auth/sign_up_controller"
-    "gin-rest-api/controllers/ping_controller"
-    "gin-rest-api/initializers"
-    "log"
+	"log"
+
+	"gin-rest-api/controllers/api/v1/user/auth/sign_up_controller"
+	"gin-rest-api/controllers/ping_controller"
+	"gin-rest-api/initializers"
 )
 
 func Init() {
-    log.Printf("Init router")
-    ping()
-    apiV1UserAuth()
+	log.Printf("Init router")
+	ping()
+	apiV1UserAuth()
 }
 
 func ping() {
-    initializers.ENGINE.GET("/ping", ping_controller.GetPing())
+	initializers.ENGINE.GET("/ping", ping_controller.GetPing())
 }
 
 func apiV1UserAuth() {
-    authRouterGroup := initializers.ENGINE.Group("/api/v1/user/auth")
-    authRouterGroup.POST("/sign_up", sign_up_controller.SignUp())
+	authRouterGroup := initializers.ENGINE.Group("/api/v1/user/auth")
+	authRouterGroup.POST("/sign_up", sign_up_controller.SignUp())
 }

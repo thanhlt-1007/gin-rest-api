@@ -1,14 +1,14 @@
 package db
 
 import (
-    "gorm.io/gorm"
-    "gin-rest-api/database"
+	"gin-rest-api/database"
+	"gorm.io/gorm"
 )
 
 func Init() *gorm.DB {
-    db := database.Connect()
-    database.Create(db)
-    db = database.Open()
+	db := database.Connect()
+	database.Create(db)
+	db = database.Open()
 
-    return db
+	return db
 }

@@ -63,3 +63,19 @@ http://localhost:8080/swagger/index.html
 ```sh
 go run .
 ```
+
+## Format tool
+
+### Install gofumpt
+
+```sh
+go install mvdan.cc/gofumpt@latest
+```
+
+- Reference: https://github.com/mvdan/gofumpt?tab=readme-ov-file#gofumpt
+
+### Format code
+
+```sh
+gofumpt -e -l -w .
+```

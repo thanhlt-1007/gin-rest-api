@@ -1,15 +1,15 @@
 package get_ping_serializer
 
 import (
-    "gin-rest-api/responses/ping_controller/get_ping_response"
+	"gin-rest-api/responses/ping_controller/get_ping_response"
 )
 
 func Serializer() get_ping_response.Response {
-    data := get_ping_response.Data{
-        Message: "pong",
-    }
+	data := get_ping_response.Data{
+		Message: "pong",
+	}
 
-    return get_ping_response.Response {
-        Data: data,
-    }
+	return get_ping_response.Response{
+		Data: data,
+	}
 }
