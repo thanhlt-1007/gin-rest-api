@@ -16,15 +16,15 @@ func Perform(request sign_up_request.Request) *models.Token {
 		Email:             request.Email,
 		EncryptedPassword: password_util.Encrypt(request.Password),
 	}
-	_, err := user_repository.CreateUser(&user)
-	if err != nil {
-		log.Printf("sign_up_service.Perform error\n%s", fmt_util.SprintfError(err))
-		panic(err)
+	_, createUserErr := user_repository.CreateUser(&user)
+	if createUserErr != nil {
+		log.Printf("sign_up_service.Perform CreateUser error\n%s", fmt_util.SprintfError(createUserErr))
+		panic(createUserErr)
 	}
-	token, err := token_repository.CreateUserToken(&user)
-	if err != nil {
-		log.Printf("sign_up_service.Perform error\n%s", fmt_util.SprintfError(err))
-		panic(err)
+	token, createUserTokenErr := token_repository.CreateUserToken(&user)
+	if createUserTokenErr != nil {
+		log.Printf("sign_up_service.Perform CreateUserToken error\n%s", fmt_util.SprintfError(createUserTokenErr))
+		panic(createUserTokenErr)
 	}
 
 	return token
