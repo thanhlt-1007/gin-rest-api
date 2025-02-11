@@ -8,6 +8,7 @@ import (
 	"gin-rest-api/middlewares"
 	"gin-rest-api/router"
 	"gin-rest-api/swagger"
+	fmt_util "gin-rest-api/utils/fmt"
 	"gin-rest-api/validators"
 )
 
@@ -22,5 +23,9 @@ func init() {
 
 func main() {
 	log.Printf("Run engine")
-	initializers.ENGINE.Run()
+	err := initializers.ENGINE.Run()
+	if err != nil {
+		log.Printf("initializers.ENGINE.Run() error\n%s", fmt_util.SprintfError(err))
+		panic(err)
+	}
 }
