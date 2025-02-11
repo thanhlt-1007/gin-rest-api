@@ -3,7 +3,8 @@ package env
 import (
 	"log"
 
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
+
 	"github.com/joho/godotenv"
 )
 

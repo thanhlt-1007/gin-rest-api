@@ -5,7 +5,8 @@ import (
 	"log"
 	"os"
 
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
+
 	"gorm.io/gorm"
 )
 

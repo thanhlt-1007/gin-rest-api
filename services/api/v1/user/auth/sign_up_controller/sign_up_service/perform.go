@@ -7,7 +7,7 @@ import (
 	"gin-rest-api/repositories/token_repository"
 	"gin-rest-api/repositories/user_repository"
 	"gin-rest-api/requests/api/v1/user/auth/sign_up_controller/sign_up_request"
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
 	"gin-rest-api/utils/password"
 )
 

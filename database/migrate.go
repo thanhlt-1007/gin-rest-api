@@ -8,7 +8,7 @@ import (
 
 	"ariga.io/atlas-go-sdk/atlasexec"
 
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
 )
 
 func Migrate() {

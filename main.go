@@ -8,7 +8,7 @@ import (
 	"gin-rest-api/middlewares"
 	"gin-rest-api/router"
 	"gin-rest-api/swagger"
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
 	"gin-rest-api/validators"
 )
 
