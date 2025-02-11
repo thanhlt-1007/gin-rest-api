@@ -3,7 +3,7 @@ package ping_controller
 import (
 	_ "gin-rest-api/responses/ping_controller/get_ping_response"
 	"gin-rest-api/serializers/ping_controller/get_ping_serializer"
-	"gin-rest-api/utils/response/response_ok"
+	"gin-rest-api/utils/response_util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,7 +16,7 @@ import (
 // @Success 200	{object} get_ping_response.Response
 func GetPing() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		response_ok.JSON(
+		response_util.ResponseOK(
 			context,
 			get_ping_serializer.Serializer(),
 		)

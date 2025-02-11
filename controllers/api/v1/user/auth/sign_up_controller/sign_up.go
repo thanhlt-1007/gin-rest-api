@@ -7,7 +7,7 @@ import (
 	_ "gin-rest-api/responses/errors/validation_error_response"
 	"gin-rest-api/serializers/api/v1/user/auth/sign_up_controller/sign_up_serializer"
 	"gin-rest-api/services/api/v1/user/auth/sign_up_controller/sign_up_service"
-	"gin-rest-api/utils/response/response_ok"
+	"gin-rest-api/utils/response_util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,7 +31,7 @@ func SignUp() gin.HandlerFunc {
 
 		token := sign_up_service.Perform(request)
 
-		response_ok.JSON(
+		response_util.ResponseOK(
 			context,
 			sign_up_serializer.Serializer(token),
 		)
