@@ -1,4 +1,4 @@
-package response_unknown_panic_error
+package response_util
 
 import (
 	"net/http"
@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func JSON(context *gin.Context, err any) {
+func ResponseUnknownPanicError(context *gin.Context, err any) {
 	context.JSON(
 		http.StatusInternalServerError,
 		unknown_panic_error_serializer.Serializer(err),

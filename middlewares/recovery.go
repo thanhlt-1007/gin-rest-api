@@ -2,7 +2,6 @@ package middlewares
 
 import (
 	"gin-rest-api/utils/errors_util"
-	"gin-rest-api/utils/response/response_unknown_panic_error"
 	"gin-rest-api/utils/response_util"
 
 	"github.com/gin-gonic/gin"
@@ -25,7 +24,7 @@ func Recovery() gin.HandlerFunc {
 						response_util.ResponseInternalServerError(context, err)
 					}
 				} else {
-					response_unknown_panic_error.JSON(context, recovered)
+					response_util.ResponseUnknownPanicError(context, recovered)
 				}
 				context.Abort()
 			}
