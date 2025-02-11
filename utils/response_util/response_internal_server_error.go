@@ -1,4 +1,4 @@
-package response_internal_server_error
+package response_util
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func JSON(context *gin.Context, err error) {
+func ResponseInternalServerError(context *gin.Context, err error) {
 	context.JSON(
 		http.StatusInternalServerError,
 		internal_server_error_serializer.Serializer(err),
