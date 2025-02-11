@@ -3,7 +3,6 @@ package middlewares
 import (
 	"gin-rest-api/utils/errors_util"
 	"gin-rest-api/utils/response/response_unknown_panic_error"
-	"gin-rest-api/utils/response/response_validation_error"
 	"gin-rest-api/utils/response_util"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +15,7 @@ func Recovery() gin.HandlerFunc {
 			recovered := recover()
 			if recovered != nil {
 				if err, ok := recovered.(validator.ValidationErrors); ok {
-					response_validation_error.JSON(context, err)
+					response_util.ResponseValidationError(context, err)
 				} else if err, ok := recovered.(error); ok {
 					// FYI
 					// Hanlde `gorm:"uniqueIndex"`
