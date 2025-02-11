@@ -1,4 +1,4 @@
-package response_ok
+package response_util
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func JSON(context *gin.Context, data any) {
+func ResponseOK(context *gin.Context, data any) {
 	context.JSON(
 		http.StatusOK,
 		data,
