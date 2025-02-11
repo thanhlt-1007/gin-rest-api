@@ -1,6 +1,8 @@
 package middlewares
 
 import (
+	"log"
+
 	"gin-rest-api/utils/errors_util"
 	"gin-rest-api/utils/response_util"
 
@@ -13,6 +15,8 @@ func Recovery() gin.HandlerFunc {
 		defer func() {
 			recovered := recover()
 			if recovered != nil {
+				log.Printf("Recovery recovered %#v\n", recovered)
+
 				if err, ok := recovered.(validator.ValidationErrors); ok {
 					response_util.ResponseValidationError(context, err)
 				} else if err, ok := recovered.(error); ok {
