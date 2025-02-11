@@ -1,9 +1,10 @@
-package response_unkown_panic_error
+package response_unknown_panic_error
 
 import (
 	"net/http"
 
 	"gin-rest-api/serializers/errors/unknown_panic_error_serializer"
+
 	"github.com/gin-gonic/gin"
 )
 
