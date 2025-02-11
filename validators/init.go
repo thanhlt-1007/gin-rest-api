@@ -3,7 +3,8 @@ package validators
 import (
 	"log"
 
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
+
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
 )

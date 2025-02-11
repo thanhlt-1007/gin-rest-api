@@ -5,7 +5,7 @@ import (
 
 	"gin-rest-api/initializers"
 	"gin-rest-api/models"
-	fmt_util "gin-rest-api/utils/fmt"
+	"gin-rest-api/utils/fmt_util"
 )
 
 func CreateUser(user *models.User) (*models.User, error) {

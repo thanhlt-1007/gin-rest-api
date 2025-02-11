@@ -1,7 +1,7 @@
-package fmt
+package fmt_util
 
 import (
-	go_fmt "fmt"
+	"fmt"
 )
 
 func SprintfError(err error) string {
@@ -9,5 +9,5 @@ func SprintfError(err error) string {
 		"\tGo value: %#v\n" +
 		"\tValue: %v\n" +
 		"\tMessage: %s"
-	return go_fmt.Sprintf(format, err, err, err, err.Error())
+	return fmt.Sprintf(format, err, err, err, err.Error())
 }
