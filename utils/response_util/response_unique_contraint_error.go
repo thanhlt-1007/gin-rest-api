@@ -1,4 +1,4 @@
-package response_unique_contraint_error
+package response_util
 
 import (
 	"net/http"
@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func JSON(context *gin.Context, err errors.UniqueContraintError) {
+func ResponseUniqueContraintError(context *gin.Context, err errors.UniqueContraintError) {
 	context.JSON(
 		http.StatusUnprocessableEntity,
 		unique_contraint_error_serializer.Serializer(err),

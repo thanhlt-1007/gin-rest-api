@@ -2,7 +2,6 @@ package middlewares
 
 import (
 	"gin-rest-api/utils/errors_util"
-	"gin-rest-api/utils/response/response_unique_contraint_error"
 	"gin-rest-api/utils/response/response_unknown_panic_error"
 	"gin-rest-api/utils/response/response_validation_error"
 	"gin-rest-api/utils/response_util"
@@ -22,7 +21,7 @@ func Recovery() gin.HandlerFunc {
 					// FYI
 					// Hanlde `gorm:"uniqueIndex"`
 					if uniqueContraintError, ok := errors_util.IsUniqueContraintError(err); ok {
-						response_unique_contraint_error.JSON(context, *uniqueContraintError)
+						response_util.ResponseUniqueContraintError(context, *uniqueContraintError)
 					} else {
 						response_util.ResponseInternalServerError(context, err)
 					}
