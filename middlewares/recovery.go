@@ -6,6 +6,7 @@ import (
 	"gin-rest-api/utils/errors_util"
 	"gin-rest-api/utils/response_util"
 
+	"gin-rest-api/errors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
@@ -19,6 +20,8 @@ func Recovery() gin.HandlerFunc {
 
 				if err, ok := recovered.(validator.ValidationErrors); ok {
 					response_util.ResponseValidationError(context, err)
+				} else if err, ok := recovered.(errors.UnauthorizedError); ok {
+					response_util.ResponseUnauthorizedError(context, err)
 				} else if err, ok := recovered.(error); ok {
 					// FYI
 					// Hanlde `gorm:"uniqueIndex"`
