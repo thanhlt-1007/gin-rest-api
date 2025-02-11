@@ -8,13 +8,13 @@ import (
 	"gin-rest-api/repositories/user_repository"
 	"gin-rest-api/requests/api/v1/user/auth/sign_up_controller/sign_up_request"
 	"gin-rest-api/utils/fmt_util"
-	"gin-rest-api/utils/password"
+	"gin-rest-api/utils/password_util"
 )
 
 func Perform(request sign_up_request.Request) *models.Token {
 	user := models.User{
 		Email:             request.Email,
-		EncryptedPassword: password.Encrypt(request.Password),
+		EncryptedPassword: password_util.Encrypt(request.Password),
 	}
 	_, err := user_repository.CreateUser(&user)
 	if err != nil {
