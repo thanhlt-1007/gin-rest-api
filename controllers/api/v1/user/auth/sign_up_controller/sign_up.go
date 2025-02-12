@@ -16,7 +16,7 @@ import (
 )
 
 // godoc
-// @Tags User-Auth-SignUp
+// @Tags User-Auth
 // @Router /user/auth/sign_up [post]
 // @Summary User sign up
 // @Accept json

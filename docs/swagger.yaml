@@ -45,6 +45,26 @@ definitions:
         example: Internal Server Error
         type: string
     type: object
+  refresh_token_response.Data:
+    properties:
+      access_token:
+        example: xxx
+        type: string
+      expires_at:
+        example: "2025-12-31T12:30:00.0000+07:00"
+        type: string
+      id:
+        example: 1
+        type: integer
+      refresh_token:
+        example: xxx
+        type: string
+    type: object
+  refresh_token_response.Response:
+    properties:
+      data:
+        $ref: '#/definitions/refresh_token_response.Data'
+    type: object
   sign_in_request.Request:
     properties:
       email:
@@ -154,6 +174,28 @@ paths:
       summary: GET ping used for healthcheck
       tags:
       - Ping
+  /user/auth/refresh_token:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/refresh_token_response.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/unauthorized_error_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/internal_server_error_response.Response'
+      summary: User refresh token
+      tags:
+      - User-Auth
   /user/auth/sign_in:
     post:
       consumes:
@@ -182,7 +224,7 @@ paths:
             $ref: '#/definitions/internal_server_error_response.Response'
       summary: User sign in
       tags:
-      - User-Auth-SignIn
+      - User-Auth
   /user/auth/sign_up:
     post:
       consumes:
@@ -211,7 +253,7 @@ paths:
             $ref: '#/definitions/internal_server_error_response.Response'
       summary: User sign up
       tags:
-      - User-Auth-SignUp
+      - User-Auth
   /user/me:
     get:
       consumes:
