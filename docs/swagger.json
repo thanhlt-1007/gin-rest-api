@@ -26,6 +26,40 @@
                 }
             }
         },
+        "/user/auth/refresh_token": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User-Auth"
+                ],
+                "summary": "User refresh token",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/refresh_token_response.Response"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/unauthorized_error_response.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/internal_server_error_response.Response"
+                        }
+                    }
+                }
+            }
+        },
         "/user/auth/sign_in": {
             "post": {
                 "consumes": [
@@ -35,7 +69,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "User-Auth-SignIn"
+                    "User-Auth"
                 ],
                 "summary": "User sign in",
                 "parameters": [
@@ -80,7 +114,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "User-Auth-SignUp"
+                    "User-Auth"
                 ],
                 "summary": "User sign up",
                 "parameters": [
@@ -217,6 +251,35 @@
                 "message": {
                     "type": "string",
                     "example": "Internal Server Error"
+                }
+            }
+        },
+        "refresh_token_response.Data": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string",
+                    "example": "xxx"
+                },
+                "expires_at": {
+                    "type": "string",
+                    "example": "2025-12-31T12:30:00.0000+07:00"
+                },
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "refresh_token": {
+                    "type": "string",
+                    "example": "xxx"
+                }
+            }
+        },
+        "refresh_token_response.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/refresh_token_response.Data"
                 }
             }
         },

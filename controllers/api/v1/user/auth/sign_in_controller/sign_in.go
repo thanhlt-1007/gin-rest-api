@@ -12,7 +12,7 @@ import (
 )
 
 // godoc
-// @Tags User-Auth-SignIn
+// @Tags User-Auth
 // @Router /user/auth/sign_in [post]
 // @Summary User sign in
 // @Accept json

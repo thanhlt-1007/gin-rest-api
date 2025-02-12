@@ -3,6 +3,7 @@ package router
 import (
 	"log"
 
+	"gin-rest-api/controllers/api/v1/user/auth/refresh_token_controller"
 	"gin-rest-api/controllers/api/v1/user/auth/sign_in_controller"
 	"gin-rest-api/controllers/api/v1/user/auth/sign_up_controller"
 	"gin-rest-api/controllers/api/v1/user/me_controller"
@@ -26,6 +27,7 @@ func apiV1UserAuth() {
 	authRouterGroup := initializers.ENGINE.Group("/api/v1/user/auth")
 	authRouterGroup.POST("/sign_up", sign_up_controller.SignUp())
 	authRouterGroup.POST("/sign_in", sign_in_controller.SignIn())
+	authRouterGroup.POST("/refresh_token", refresh_token_controller.RefreshToken())
 }
 
 func apiV1User() {
